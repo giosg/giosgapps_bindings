@@ -1,13 +1,13 @@
 from distutils.core import setup
 setup(
-  name = 'giosgapps-bindings',         
-  packages = ['giosgapps-bindings'],   
+  name = 'giosgapps_bindings',         
+  packages = ['giosgapps_bindings'],   
   version = '0.0.1',      
   license = 'MIT',        
   description = 'Module for Giosg Apps development',   
   author = 'Giosg',                  
   author_email = 'surface@giosg.com',      
-  url = 'https://github.com/giosg/giosgapps-bindings',   
+  url = 'https://github.com/giosg/giosgapps_bindings',   
   download_url = '',    
   keywords = ['AUTH', 'GIOSG'],   
   install_requires=['jwt','requests'],  
