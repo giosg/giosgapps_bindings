@@ -1,12 +1,10 @@
 from django.test import TestCase, RequestFactory
-from common.lib.giosg_trigger_in_django import GiosgTriggerInDjango
+from ..lib.giosg_trigger_in_django import GiosgTriggerInDjango
 import jwt
 import time
 import os
 
-SIGN_KEY = os.environ['GIOSG_SAML2_APP_SECRET']
-
-
+SIGN_KEY = '123abc456cde'
 class GiosgTriggerAbstractionTest(TestCase):
 
     @classmethod
