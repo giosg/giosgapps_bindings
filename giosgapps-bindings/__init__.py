@@ -1,4 +1,2 @@
 from giosgapps-bindings.models import GiosgAppInstallation
 from giosgapps-bindings.lib.giosg_trigger_in_django import CodeGrantFlowTokenResponse,GiosgTriggerInDjango
-from giosgapps-bindings.tests.test_lib import GiosgTriggerAbstractionTest
-from giosgapps-bindings.tests.test_models import GiosgAppInstallationTest
