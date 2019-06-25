@@ -11,3 +11,6 @@ venv
 *.pyc
 __pycache__/
 db.sqlite3
+build
+dist
+giosgapps_bindings.egg-info
