@@ -1,13 +1,13 @@
-.DS_Store
-./giosgapps-bindings/migrations/*
-
-.vscode
+# Development environment
+.env
 venv
+.DS_Store
 
-### Django ###
-*.log
-*.pot
+# IDE
+.vscode
+.idea
+
+# Django/Python
 *.pyc
 __pycache__/
-.env
 db.sqlite3
