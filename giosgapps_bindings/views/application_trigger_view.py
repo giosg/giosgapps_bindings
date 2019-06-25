@@ -5,6 +5,10 @@ from ..lib.giosg_trigger_in_django import GiosgTriggerInDjango
 
 
 class ApplicationTriggerView(View):
+    """
+    This module expects to find "GIOSG_APP_SECRET" variable in Django settings.
+    This is intended to be subclassed, and used via "on_<trigger-type>" methods.
+    """
     http_method_names = ['get']
 
     def get(self, request):
@@ -13,7 +17,7 @@ class ApplicationTriggerView(View):
             trigger = GiosgTriggerInDjango(request, settings.GIOSG_APP_SECRET)
             handler = getattr(self, 'on_'+trigger.type, self.__unsupported_trigger_type)
             return handler(request, trigger)
-        # Handle any trigger-data validation errors
+        # Handle any giosg-auth-token validation errors
         except ValueError as e:
             return HttpResponseBadRequest(e)
 
