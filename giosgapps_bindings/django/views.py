@@ -1,7 +1,7 @@
 from django.views import View
 from django.http import HttpResponseBadRequest
 from django.conf import settings
-from ..lib.giosg_trigger_in_django import GiosgTriggerInDjango
+from ..django.utils import GiosgappTriggerContext
 
 
 class ApplicationTriggerView(View):
@@ -12,9 +12,9 @@ class ApplicationTriggerView(View):
     http_method_names = ['get']
 
     def get(self, request):
-        # Leave validation to GiosgTriggerInDjango object
+        # Leave validation to GiosgappTriggerContext object
         try:
-            trigger = GiosgTriggerInDjango(request, settings.GIOSG_APP_SECRET)
+            trigger = GiosgappTriggerContext(request, settings.GIOSG_APP_SECRET)
             handler = getattr(self, 'on_'+trigger.type, self.__unsupported_trigger_type)
             return handler(request, trigger)
         # Handle any giosg-auth-token validation errors

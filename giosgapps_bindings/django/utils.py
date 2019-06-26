@@ -1,4 +1,3 @@
-# coding=utf-8
 import jwt
 import requests
 
@@ -15,7 +14,7 @@ class CodeGrantFlowTokenResponse:
         self.app_id = app_id  # ID of (your) app that requested for persistent access token
 
 
-class GiosgTriggerInDjango:
+class GiosgappTriggerContext:
     """
     Abstraction for views in Django Framework, to conveniently validate and parse Giosg Trigger Requests.
      - Validates query parameters of the trigger request
@@ -140,7 +139,7 @@ class GiosgTriggerInDjango:
 
         # Process any (known) errors
         if r.status_code == 400:
-            raise ValueError('{} {}'.format(r_data['error'], r_data['error_description']))
+            raise ValueError('{} {}'.format(r_data['error'], r_data['error_description']))
 
         return CodeGrantFlowTokenResponse(
             r_data['access_token'],

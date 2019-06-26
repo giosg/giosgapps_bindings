@@ -1,11 +1,12 @@
 from django.test import TestCase
-from ..models import GiosgAppInstallation
+from ..django.models import GiosgappInstallationBaseModel
 
-class SampleAppInstallation(GiosgAppInstallation):
+
+class SampleAppInstallation(GiosgappInstallationBaseModel):
     pass
 
 
-class GiosgAppInstallationTest(TestCase):
+class GiosgappInstallationTest(TestCase):
 
     def test_creation(self):
         m = SampleAppInstallation(

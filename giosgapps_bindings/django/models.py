@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class GiosgAppInstallation(models.Model):
+class GiosgappInstallationBaseModel(models.Model):
     """
     Store for persistent bot token, and any (protocol-specific) app-installation-specific data
     """

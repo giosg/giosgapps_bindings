@@ -1,10 +1,11 @@
 from django.test import TestCase, RequestFactory
-from ..lib.giosg_trigger_in_django import GiosgTriggerInDjango
+from ..django.utils import GiosgappTriggerContext
 import jwt
 import time
-import os
 
 SIGN_KEY = '123abc456cde'
+
+
 class GiosgTriggerAbstractionTest(TestCase):
 
     @classmethod
@@ -34,7 +35,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+            trigger = GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -48,7 +49,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+            trigger = GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -62,7 +63,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+            trigger = GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -76,7 +77,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+            trigger = GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -91,7 +92,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             # Missing 'redirect_uri' when type is 'install'
         })
         try:
-            trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+            trigger = GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -105,7 +106,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             # Missing param 'token'
         })
         try:
-            trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+            trigger = GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -118,7 +119,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'data': self.VALID_DATA_JWT,
             'token': self.VALID_TOKEN_JWT
         })
-        trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+        trigger = GiosgappTriggerContext(request, SIGN_KEY)
 
         # Check attrs exist
         self.assertTrue(hasattr(trigger, 'type'))
@@ -153,7 +154,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'data': self.VALID_DATA_JWT,
             'token': self.VALID_TOKEN_JWT
         })
-        trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+        trigger = GiosgappTriggerContext(request, SIGN_KEY)
         self.assertTrue(isinstance(trigger.get_auth_header_content(), str))
 
     def test_auth_header_content_getter_unavailable_if_uninstall(self):
@@ -164,7 +165,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+            trigger = GiosgappTriggerContext(request, SIGN_KEY)
             trigger.get_auth_header_content()
         except ValueError as e:
             self.assertTrue('token' in str(e))
@@ -176,7 +177,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'data': self.VALID_DATA_JWT,
             'token': self.VALID_TOKEN_JWT
         })
-        trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+        trigger = GiosgappTriggerContext(request, SIGN_KEY)
         trigger.app_user_id = None
         try:
             trigger.exchange_persistent_access_token()
@@ -192,7 +193,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'data': self.VALID_DATA_JWT,
             'token': self.VALID_TOKEN_JWT
         })
-        trigger = GiosgTriggerInDjango(request, SIGN_KEY)
+        trigger = GiosgappTriggerContext(request, SIGN_KEY)
         try:
             trigger.exchange_persistent_access_token()
             # Should go to the exception instead
