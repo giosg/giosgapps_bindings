@@ -1,6 +1,6 @@
 import setuptools
 from distutils.core import setup
-with open('requirement.txt') as f:
+with open('requirements.txt') as f:
   setup(
     name = 'giosgapps_bindings',         
     packages = setuptools.find_packages(),   
