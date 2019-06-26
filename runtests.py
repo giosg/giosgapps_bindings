@@ -13,15 +13,14 @@ SETTINGS_DICT = {
     }
 }
 
+
 def run_tests():
 
     from django.conf import settings
     settings.configure(**SETTINGS_DICT)
 
-
     import django
     django.setup()
-
 
     from django.test.utils import get_runner
     TestRunner = get_runner(settings)
