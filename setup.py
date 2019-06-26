@@ -1,6 +1,6 @@
 import setuptools
 from distutils.core import setup
-with open('requirements.txt') as f:
+with open('./requirements.txt') as f:
   setup(
     name = 'giosgapps_bindings',         
     packages = setuptools.find_packages(),   
@@ -10,7 +10,7 @@ with open('requirements.txt') as f:
     author = 'Giosg',                  
     author_email = 'developers@giosg.com',      
     url = 'https://github.com/giosg/giosgapps_bindings',   
-    download_url = '',    
+    download_url = 'https://github.com/giosg/giosgapps_bindings/archive/v0.0.1.tar.gz',    
     keywords = ['AUTH', 'GIOSG'],
     install_requires = list(f.read().splitlines()),  
     classifiers=[
