@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
     license = 'MIT',        
     description = 'Module for Giosg Apps development',   
     author = 'Giosg',                  
-    author_email = 'surface@giosg.com',      
+    author_email = 'developers@giosg.com',      
     url = 'https://github.com/giosg/giosgapps_bindings',   
     download_url = '',    
     keywords = ['AUTH', 'GIOSG'],
