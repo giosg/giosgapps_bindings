@@ -1,16 +1,16 @@
 import setuptools
 from distutils.core import setup
-with open('./requirements.txt') as f:
+with open('requirements.txt') as f:
   setup(
     name = 'giosgapps_bindings',         
     packages = setuptools.find_packages(),   
-    version = '0.0.3',      
+    version = '0.0.4',      
     license = 'MIT',        
     description = 'Module for Giosg Apps development',   
     author = 'Giosg',                  
     author_email = 'developers@giosg.com',      
     url = 'https://github.com/giosg/giosgapps_bindings',   
-    download_url = 'https://github.com/giosg/giosgapps_bindings/archive/v0.0.3.tar.gz',    
+    download_url = 'https://github.com/giosg/giosgapps_bindings/archive/v0.0.4.tar.gz',    
     keywords = ['AUTH', 'GIOSG'],
     install_requires = list(f.read().splitlines()),  
     classifiers=[
