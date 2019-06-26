@@ -4,7 +4,7 @@ with open('requirements.txt') as f:
   setup(
     name = 'giosgapps_bindings',         
     packages = setuptools.find_packages(),   
-    version = '0.0.4',      
+    version = '0.0.5',      
     license = 'MIT',        
     description = 'Module for Giosg Apps development',   
     author = 'Giosg',                  
