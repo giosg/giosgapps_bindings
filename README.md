@@ -1,4 +1,5 @@
 # giosgapps-bindings
+![Modules](modules.png)  
 
 ## Changelog
 * TODO when 1.0.0 released
