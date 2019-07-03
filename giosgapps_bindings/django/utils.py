@@ -1,5 +1,6 @@
 import jwt
 import requests
+import os
 
 
 class CodeGrantFlowTokenResponse:
@@ -125,7 +126,7 @@ class GiosgappTriggerContext:
 
         # Default Content-Type is application/x-www-form-urlencoded as required by Giosg API
         r = requests.post(
-            'https://service.giosg.com/identity/token',
+            'https://{}/identity/token'.format(os.environ.get('SERVICE_GIOSG_COM', 'service.giosg.com')),
             data={
                 'grant_type': 'authorization_code',
                 'code': self.__app_user_code,
