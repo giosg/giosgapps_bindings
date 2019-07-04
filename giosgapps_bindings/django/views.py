@@ -20,8 +20,9 @@ class ApplicationTriggerView(View):
             handler = getattr(self, 'on_'+trigger.type, self.__unsupported_trigger_type)
             if trigger.type == 'manual_dialog' or trigger.type == 'manual_nav':
                 return xframe_options_exempt(handler(request, trigger))
-            
+
             return handler(request, trigger)
+
         # Handle any giosg-auth-token validation errors
         except ValueError as e:
             return HttpResponseBadRequest(e)
