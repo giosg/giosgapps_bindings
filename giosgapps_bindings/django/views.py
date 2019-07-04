@@ -1,5 +1,6 @@
 from django.views import View
 from django.http import HttpResponseBadRequest
+from django.views.decorators.clickjacking import xframe_options_exempt
 from django.conf import settings
 from ..django.utils import GiosgappTriggerContext
 
@@ -93,6 +94,7 @@ class ApplicationTriggerView(View):
         """
         raise NotImplementedError
 
+    @xframe_options_exempt
     def on_manual_dialog(self, request, trigger_context):
         """
         This App was clicked by operator from Giosg Console chat-sidebar.
@@ -104,6 +106,7 @@ class ApplicationTriggerView(View):
         """
         raise NotImplementedError
 
+    @xframe_options_exempt
     def on_manual_nav(self, request, trigger_context):
         """
         This App was clicked by operator from Giosg Console navigation-bar.
