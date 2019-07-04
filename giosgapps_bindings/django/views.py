@@ -18,6 +18,9 @@ class ApplicationTriggerView(View):
         try:
             trigger = GiosgappTriggerContext(request, settings.GIOSG_APP_SECRET)
             handler = getattr(self, 'on_'+trigger.type, self.__unsupported_trigger_type)
+            if trigger.type == 'manual_dialog' or trigger.type == 'manual_nav':
+                return xframe_options_exempt(handler(request, trigger))
+            
             return handler(request, trigger)
         # Handle any giosg-auth-token validation errors
         except ValueError as e:
@@ -94,7 +97,6 @@ class ApplicationTriggerView(View):
         """
         raise NotImplementedError
 
-    @xframe_options_exempt
     def on_manual_dialog(self, request, trigger_context):
         """
         This App was clicked by operator from Giosg Console chat-sidebar.
@@ -106,7 +108,6 @@ class ApplicationTriggerView(View):
         """
         raise NotImplementedError
 
-    @xframe_options_exempt
     def on_manual_nav(self, request, trigger_context):
         """
         This App was clicked by operator from Giosg Console navigation-bar.
