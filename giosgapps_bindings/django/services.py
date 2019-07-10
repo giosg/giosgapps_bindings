@@ -11,7 +11,7 @@ class GiosgHttpApi:
 
     def __init__(self, org_id, installation_model):
         try:
-            conf = installation_model.objects.get(partner_uuid=org_id)
+            conf = installation_model.objects.get(installed_org_uuid=org_id)
         except ObjectDoesNotExist:
             raise ValueError('Cannot instantiate Giosg API without persistent token. '
                              'Either app has not been installed for this org, '
