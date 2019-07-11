@@ -39,3 +39,37 @@ class GiosgHttpApi:
             logger.exception(e)
             raise e
         return response
+
+    def patch(self, endpoint, json, headers={}):
+        try:
+            response = requests.patch(self.CHAT_HOST+endpoint,
+                                     json=json,
+                                     headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            logger.exception(e)
+            raise e
+        return response
+        
+
+    def put(self, endpoint, json, headers={}):
+        try:
+            response = requests.put(self.CHAT_HOST+endpoint,
+                                     json=json,
+                                     headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            logger.exception(e)
+            raise e
+        return response
+
+    def delete(self, endpoint, params={}, headers={}):
+        try:
+            response = requests.delete(self.CHAT_HOST+endpoint,
+                                    params=params,
+                                    headers=dict(self.auth_headers, **headers))
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            logger.exception(e)
+            raise e
+        return response
