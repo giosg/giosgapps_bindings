@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import sys
 APP_DIR = os.path.abspath(os.path.dirname(__file__))
