@@ -10,15 +10,17 @@ class GiosgHttpApi:
     CHAT_HOST = os.environ.get('SERVICE_GIOSG_COM', 'https://service.giosg.com')
 
     def __init__(self, org_id, installation_model, api_key=None):
-        try:
-            conf = installation_model.objects.get(installed_org_uuid=org_id)
-        except ObjectDoesNotExist:
-            raise ValueError('Cannot instantiate Giosg API without persistent token. '
-                             'Either app has not been installed for this org, '
-                             'or the token was not saved on app install.')
-        self.auth_headers = {'Authorization': '{} {}'.format(conf.persistent_token_prefix, conf.persistent_bot_token)}
         if api_key:
             self.auth_headers = {'Authorization': '{} {}'.format("Token", api_key)}
+        else:
+            try:
+                conf = installation_model.objects.get(installed_org_uuid=org_id)
+            except ObjectDoesNotExist:
+                raise ValueError('Cannot instantiate Giosg API without persistent token. '
+                                'Either app has not been installed for this org, '
+                                'or the token was not saved on app install.')
+            self.auth_headers = {'Authorization': '{} {}'.format(conf.persistent_token_prefix, conf.persistent_bot_token)}
+            
 
     def get(self, endpoint, params={}, headers={}):
         try:
