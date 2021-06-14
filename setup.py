@@ -10,7 +10,7 @@ with open('requirements.txt') as f:
       author='Giosg',
       author_email='developers@giosg.com',
       url='https://github.com/giosg/giosgapps_bindings',
-      download_url='https://github.com/giosg/giosgapps_bindings/archive/v0.1.0.tar.gz',
+      download_url='https://github.com/giosg/giosgapps_bindings/archive/v0.1.1.tar.gz',
       keywords=['AUTH', 'GIOSG'],
       install_requires=list(f.read().splitlines()),
       classifiers=[
