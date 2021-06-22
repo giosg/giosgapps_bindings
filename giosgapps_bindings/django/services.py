@@ -9,9 +9,13 @@ logger = logging.getLogger(__name__)
 class GiosgHttpApi:
     CHAT_HOST = os.environ.get('SERVICE_GIOSG_COM', 'https://service.giosg.com')
 
-    def __init__(self, org_id, installation_model, api_key=None):
+    def __init__(self, org_id, installation_model, api_key=None, token_type="Token"):
+        valid_token_types = ["Token", "Bearer"]
+        if token_type not in valid_token_types:
+            raise ValueError("Invalid token type '{}', valid values are {}".format(token_type, valid_token_types))
+
         if api_key:
-            self.auth_headers = {'Authorization': '{} {}'.format("Token", api_key)}
+            self.auth_headers = {'Authorization': '{} {}'.format(token_type, api_key)}
         else:
             try:
                 conf = installation_model.objects.get(installed_org_uuid=org_id)
@@ -20,7 +24,7 @@ class GiosgHttpApi:
                                 'Either app has not been installed for this org, '
                                 'or the token was not saved on app install.')
             self.auth_headers = {'Authorization': '{} {}'.format(conf.persistent_token_prefix, conf.persistent_bot_token)}
-            
+
 
     def get(self, endpoint, params={}, headers={}):
         try:
