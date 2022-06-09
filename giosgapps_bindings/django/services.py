@@ -21,67 +21,41 @@ class GiosgHttpApi:
                 conf = installation_model.objects.get(installed_org_uuid=org_id)
             except ObjectDoesNotExist:
                 raise ValueError('Cannot instantiate Giosg API without persistent token. '
-                                'Either app has not been installed for this org, '
-                                'or the token was not saved on app install.')
+                                 'Either app has not been installed for this org, '
+                                 'or the token was not saved on app install.')
             self.auth_headers = {'Authorization': '{} {}'.format(conf.persistent_token_prefix, conf.persistent_bot_token)}
 
-
     def get(self, endpoint, params={}, headers={}):
-        try:
-            response = requests.get(self.CHAT_HOST+endpoint,
-                                    params=params,
-                                    headers=dict(self.auth_headers, **headers))
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as e:
-            logger.exception(e)
-            logger.exception(e.response.content)
-            raise e
+        response = requests.get(self.CHAT_HOST+endpoint,
+                                params=params,
+                                headers=dict(self.auth_headers, **headers))
+        response.raise_for_status()
         return response
 
     def post(self, endpoint, json, headers={}):
-        try:
-            response = requests.post(self.CHAT_HOST+endpoint,
-                                     json=json,
-                                     headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as e:
-            logger.exception(e)
-            logger.exception(e.response.content)
-            raise e
+        response = requests.post(self.CHAT_HOST+endpoint,
+                                 json=json,
+                                 headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
+        response.raise_for_status()
         return response
 
     def patch(self, endpoint, json, headers={}):
-        try:
-            response = requests.patch(self.CHAT_HOST+endpoint,
-                                      json=json,
-                                      headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as e:
-            logger.exception(e)
-            logger.exception(e.response.content)
-            raise e
+        response = requests.patch(self.CHAT_HOST+endpoint,
+                                  json=json,
+                                  headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
+        response.raise_for_status()
         return response
 
     def put(self, endpoint, json, headers={}):
-        try:
-            response = requests.put(self.CHAT_HOST+endpoint,
-                                    json=json,
-                                    headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as e:
-            logger.exception(e)
-            logger.exception(e.response.content)
-            raise e
+        response = requests.put(self.CHAT_HOST+endpoint,
+                                json=json,
+                                headers=dict(self.auth_headers, **{'content-type': 'application/json'}, **headers))
+        response.raise_for_status()
         return response
 
     def delete(self, endpoint, params={}, headers={}):
-        try:
-            response = requests.delete(self.CHAT_HOST+endpoint,
-                                       params=params,
-                                       headers=dict(self.auth_headers, **headers))
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as e:
-            logger.exception(e)
-            logger.exception(e.response.content)
-            raise e
+        response = requests.delete(self.CHAT_HOST+endpoint,
+                                   params=params,
+                                   headers=dict(self.auth_headers, **headers))
+        response.raise_for_status()
         return response
