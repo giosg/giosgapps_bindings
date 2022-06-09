@@ -4,6 +4,10 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 from django.conf import settings
 from ..django.utils import GiosgappTriggerContext
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class ApplicationTriggerView(View):
     """
@@ -16,15 +20,20 @@ class ApplicationTriggerView(View):
     def get(self, request):
         # Leave validation to GiosgappTriggerContext object
         try:
-            trigger = GiosgappTriggerContext(request, settings.GIOSG_APP_SECRET)
-            handler = getattr(self, 'on_'+trigger.type, self.__unsupported_trigger_type)
+            trigger = GiosgappTriggerContext(request,
+                                             settings.GIOSG_APP_SECRET)
+            handler = getattr(self, 'on_' + trigger.type,
+                              self.__unsupported_trigger_type)
             if trigger.type == 'manual_dialog' or trigger.type == 'manual_nav':
                 handler = xframe_options_exempt(handler)
             return handler(request, trigger)
 
         # Handle any giosg-auth-token validation errors
         except ValueError as e:
+            logger.error(f"ValueError creating TriggerContext: {e}")
             return HttpResponseBadRequest(e)
+        except Exception as exception:
+            logger.exception(f"Exception creating TriggerContext: {exception}")
 
     def __unsupported_trigger_type(self, *args, **kwargs):
         return HttpResponseBadRequest('Unsupported trigger type')
