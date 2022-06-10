@@ -30,7 +30,9 @@ class ApplicationTriggerView(View):
 
         # Handle any giosg-auth-token validation errors
         except ValueError as e:
-            logger.error(f"ValueError creating TriggerContext: {e}")
+            logger.error(
+                f"ValueError creating TriggerContext: {e}\nRequest get: {request.GET}"
+            )
             return HttpResponseBadRequest(e)
         except Exception as exception:
             logger.exception(f"Exception creating TriggerContext: {exception}")
