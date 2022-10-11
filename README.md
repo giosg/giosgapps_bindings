@@ -15,7 +15,7 @@ First stable release
   - Remember https://semver.org/ versioning and avoid all backwards incompatible changes!
 - Merge to master after review.
 - Create a git release with that version
-- (Download twine, `pip3 install twine`)
+- Install Twine: `pip3 install twine`
 - Run `python3 setup.py sdist` to create source distribution
 - Run `twine upload dist/*` to upload source distribution to PyPI
 - Enter prompted username and password. These can be found from the `infra-shared-pwdb`, which is accessible only to the infra team. Ask a member of the infra team to give you the username and password.
