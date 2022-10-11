@@ -60,7 +60,5 @@ class GiosgHttpApi:
         return response
 
     def _get_headers(self, extra_headers={}, add_content_type=False):
-        cnt_type = {}
-        if add_content_type:
-            cnt_type = {"content-type": "application/json"}
-        return dict(self.auth_headers, **cnt_type, **extra_headers)
+        json_headers = {"content-type": "application/json"} if add_content_type else {}
+        return dict(self.auth_headers, **json_headers, **extra_headers)
