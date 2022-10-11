@@ -30,32 +30,32 @@ class GiosgHttpApi:
             }
 
     def get(self, endpoint, params={}, headers={}):
-        reg_headers = self._get_headers(headers)
-        response = requests.get(f"{self.CHAT_HOST}{endpoint}", params=params, headers=reg_headers)
+        request_headers = self._get_headers(headers)
+        response = requests.get(f"{self.CHAT_HOST}{endpoint}", params=params, headers=request_headers)
         response.raise_for_status()
         return response
 
     def post(self, endpoint, json, headers={}):
-        reg_headers = self._get_headers(headers, add_content_type=True)
-        response = requests.post(f"{self.CHAT_HOST}{endpoint}", json=json, headers=reg_headers)
+        request_headers = self._get_headers(headers, add_content_type=True)
+        response = requests.post(f"{self.CHAT_HOST}{endpoint}", json=json, headers=request_headers)
         response.raise_for_status()
         return response
 
     def patch(self, endpoint, json, headers={}):
-        reg_headers = self._get_headers(headers, add_content_type=True)
-        response = requests.patch(f"{self.CHAT_HOST}{endpoint}", json=json, headers=reg_headers)
+        request_headers = self._get_headers(headers, add_content_type=True)
+        response = requests.patch(f"{self.CHAT_HOST}{endpoint}", json=json, headers=request_headers)
         response.raise_for_status()
         return response
 
     def put(self, endpoint, json, headers={}):
-        reg_headers = self._get_headers(headers, add_content_type=True)
-        response = requests.put(f"{self.CHAT_HOST}{endpoint}", json=json, headers=reg_headers)
+        request_headers = self._get_headers(headers, add_content_type=True)
+        response = requests.put(f"{self.CHAT_HOST}{endpoint}", json=json, headers=request_headers)
         response.raise_for_status()
         return response
 
     def delete(self, endpoint, params={}, headers={}):
-        reg_headers = self._get_headers(headers)
-        response = requests.delete(f"{self.CHAT_HOST}{endpoint}", params=params, headers=reg_headers)
+        request_headers = self._get_headers(headers)
+        response = requests.delete(f"{self.CHAT_HOST}{endpoint}", params=params, headers=request_headers)
         response.raise_for_status()
         return response
 
