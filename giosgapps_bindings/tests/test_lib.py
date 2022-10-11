@@ -120,7 +120,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'data': self.VALID_DATA_JWT,
             'token': self.VALID_TOKEN_JWT
         })
-        trigger = GiosgappTriggerContext(request, SIGN_KEY)#Ugly comment
+        trigger = GiosgappTriggerContext(request, SIGN_KEY)
 
         # Check attrs exist
         self.assertTrue(hasattr(trigger, 'type'))
