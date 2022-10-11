@@ -100,7 +100,6 @@ class GiosgTriggerAbstractionTest(TestCase):
 
     def test_missing_token_when_not_uninstall(self):
         factory = RequestFactory()
-        self.assertEqual(True, False)
         request = factory.get('/', data={
             'type': 'setup',
             'data': self.VALID_DATA_JWT
