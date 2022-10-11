@@ -4,7 +4,9 @@ Helper library for Django based application for handling Giosg App trigger reque
 
 ## Changelog
 
-- TODO when 1.0.0 released
+### 1.0.0
+First stable release
+
 
 ## Publishing new version
 
