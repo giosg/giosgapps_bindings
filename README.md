@@ -14,7 +14,8 @@ First stable release
 - Change `version` and `download_url` to match new version in `setup.py`, and push to PR
   - Remember https://semver.org/ versioning and avoid all backwards incompatible changes!
 - Merge to master after review and tests pass.
-- Create a git release with that version
+- Create a tag, `git checkout master && git tag vX.X.X  && git push --tags`
+- Create a git release with that tagged version
 - Install Twine: `pip3 install twine`
 - Run `python3 setup.py sdist` to create source distribution
 - Run `twine upload dist/*` to upload source distribution to PyPI
