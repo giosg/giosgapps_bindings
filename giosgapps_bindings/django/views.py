@@ -20,10 +20,8 @@ class ApplicationTriggerView(View):
     def get(self, request):
         # Leave validation to GiosgappTriggerContext object
         try:
-            trigger = GiosgappTriggerContext(request,
-                                             settings.GIOSG_APP_SECRET)
-            handler = getattr(self, 'on_' + trigger.type,
-                              self.__unsupported_trigger_type)
+            trigger = GiosgappTriggerContext(request, settings.GIOSG_APP_SECRET)
+            handler = getattr(self, 'on_' + trigger.type, self.__unsupported_trigger_type)
             if trigger.type == 'manual_dialog' or trigger.type == 'manual_nav':
                 handler = xframe_options_exempt(handler)
             return handler(request, trigger)

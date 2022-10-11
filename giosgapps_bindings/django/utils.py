@@ -69,7 +69,7 @@ class GiosgappTriggerContext:
 
         # Check request is coming from Giosg (via signed data-JWT), and check both JWTs for expiration
         try:
-            app_data = jwt.decode(app_data, giosg_app_secret, algorithm='HS256')
+            app_data = jwt.decode(app_data, giosg_app_secret, algorithms=["HS256"])
         except jwt.InvalidSignatureError:
             raise ValueError('Data-JWT has an invalid signature, your connection may be tampered.')
         except jwt.ExpiredSignatureError:
@@ -89,7 +89,10 @@ class GiosgappTriggerContext:
             access_token = django_request.GET.get('token')
             if not access_token:
                 raise ValueError('Missing URI query parameter "token"')
-            access_token_data = jwt.decode(access_token, verify=False)
+
+            # Note that we don't need to verify this token as we don't even
+            # know the key. These is however usefull for the apps
+            access_token_data = jwt.decode(access_token, options={"verify_signature": False})
             self.access_token = access_token
             self.access_token_exp = access_token_data['exp']
 

@@ -2,6 +2,7 @@
 
 import os
 import sys
+import subprocess
 APP_DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, APP_DIR)
 SETTINGS_DICT = {
@@ -16,8 +17,18 @@ SETTINGS_DICT = {
 }
 
 
-def run_tests():
+def run_linter():
+    try:
+        subprocess.check_output(['flake8', '.']).decode('utf-8')
+        print("Linter did not spot problems 👌")
+        return True
+    except subprocess.CalledProcessError as cpe:
+        out = cpe.output.decode("utf-8")
+        print(f"Linter error. Return code {cpe.returncode}. Error: {out}")
+        exit(cpe.returncode)
 
+
+def run_tests():
     from django.conf import settings
     settings.configure(**SETTINGS_DICT)
 
@@ -33,4 +44,5 @@ def run_tests():
 
 
 if __name__ == '__main__':
+    run_linter()
     run_tests()
