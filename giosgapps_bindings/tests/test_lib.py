@@ -12,8 +12,8 @@ class GiosgTriggerAbstractionTest(TestCase):
     def setUpTestData(cls):
         # Use old JWTs from test app, unpack them without validating signature since we sign the data again anyway
         # To-Consider: Building the sample JWTs from mere dictionary data set
-        data_jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMDAwZjcxMTYtNDQ5OS0xMWU5LWJjYTQtMDI0MmFjMTEwMDA5Iiwic3ViIjoic2VydmljZS5naW9zZy5jb20iLCJvcmdfaWQiOiJhMTdjZWE4MC1lMzk3LTExZTAtYjUxYS0wMDE2M2UwYzAxZjIiLCJhcHBfdXNlcl9jb2RlIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnZjbWRoYm1sNllYUnBiMjVmYVdRaU9pSmhNVGRqWldFNE1DMWxNemszTFRFeFpUQXRZalV4WVMwd01ERTJNMlV3WXpBeFpqSWlMQ0pxZEdraU9pSTRNMkl6T0dSbVlTMDFNak5tTFRFeFpUa3RPREExT0Mwd01qUXlZV014TVRBd01EZ2lMQ0poZFdRaU9sc2lhSFIwY0hNNkx5OXpaWEoyYVdObExtZHBiM05uTG1OdmJTOXBaR1Z1ZEdsMGVTOTBiMnRsYmlKZExDSmxlSEFpT2pFMU5UTTROelk0TmpVdU56VXhNVEV4TENKMWMyVnlYMmxrSWpvaU9ETTVPVFZoTlRJdE5USXpaaTB4TVdVNUxUZ3dOVGd0TURJME1tRmpNVEV3TURBNElpd2lhWE56SWpvaWFIUjBjSE02THk5elpYSjJhV05sTG1kcGIzTm5MbU52YlM5cFpHVnVkR2wwZVM5aGRYUm9iM0pwZW1VaUxDSnBZWFFpT2pFMU5UTTROelk0TXpVdU56VXhNVEVzSW1Gd2NGOXBaQ0k2SWpKa05ERTNaVEl5TFRSbVpEUXRNVEZsT1MwNU9USTRMVEF5TkRKaFl6RXhNREF3TlNKOS5PUlkta1FDLTNBNExyczFVMDBHMF9vblpPUlRia2tjY1dWRkZfUGdiTkFvIiwidmlzaXRvcl9pZCI6IiIsImFwcF9pZCI6IjJkNDE3ZTIyLTRmZDQtMTFlOS05OTI4LTAyNDJhYzExMDAwNSIsImluc3RfaWQiOiI4MzllZGE3Yy01MjNmLTExZTktODA1OC0wMjQyYWMxMTAwMDgiLCJhcHBfdXNlcl9pZCI6IjgzOTk1YTUyLTUyM2YtMTFlOS04MDU4LTAyNDJhYzExMDAwOCIsImNoYXRfaWQiOiIiLCJleHAiOjE1NTM4Nzc0MzUsInJvb21faWQiOm51bGwsIl9vcmdfaWQiOjEsImRvbWFpbl9ob3N0IjpudWxsLCJfdXNlcl9pZCI6Mjg4NDJ9.ST7ab1dvKuiKcsRI677o5CgK_t3Qrb4PLQNoXxy5T2U'
-        access_token_jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMDAwZjcxMTYtNDQ5OS0xMWU5LWJjYTQtMDI0MmFjMTEwMDA5Iiwic3ViIjoic2VydmljZS5naW9zZy5jb20iLCJwZXJtcyI6W10sIm9yZ19pZCI6ImExN2NlYTgwLWUzOTctMTFlMC1iNTFhLTAwMTYzZTBjMDFmMiIsImFwcF9pZCI6IjJkNDE3ZTIyLTRmZDQtMTFlOS05OTI4LTAyNDJhYzExMDAwNSIsImluc3RfaWQiOiI4MzllZGE3Yy01MjNmLTExZTktODA1OC0wMjQyYWMxMTAwMDgiLCJleHAiOjE1NTM4Nzc0MzV9.Rj83FyBEXS_sTQxHgq_WDjhUD3C80e-5lw1MgyczNuo'
+        data_jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMDAwZjcxMTYtNDQ5OS0xMWU5LWJjYTQtMDI0MmFjMTEwMDA5Iiwic3ViIjoic2VydmljZS5naW9zZy5jb20iLCJvcmdfaWQiOiJhMTdjZWE4MC1lMzk3LTExZTAtYjUxYS0wMDE2M2UwYzAxZjIiLCJhcHBfdXNlcl9jb2RlIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnZjbWRoYm1sNllYUnBiMjVmYVdRaU9pSmhNVGRqWldFNE1DMWxNemszTFRFeFpUQXRZalV4WVMwd01ERTJNMlV3WXpBeFpqSWlMQ0pxZEdraU9pSTRNMkl6T0dSbVlTMDFNak5tTFRFeFpUa3RPREExT0Mwd01qUXlZV014TVRBd01EZ2lMQ0poZFdRaU9sc2lhSFIwY0hNNkx5OXpaWEoyYVdObExtZHBiM05uTG1OdmJTOXBaR1Z1ZEdsMGVTOTBiMnRsYmlKZExDSmxlSEFpT2pFMU5UTTROelk0TmpVdU56VXhNVEV4TENKMWMyVnlYMmxrSWpvaU9ETTVPVFZoTlRJdE5USXpaaTB4TVdVNUxUZ3dOVGd0TURJME1tRmpNVEV3TURBNElpd2lhWE56SWpvaWFIUjBjSE02THk5elpYSjJhV05sTG1kcGIzTm5MbU52YlM5cFpHVnVkR2wwZVM5aGRYUm9iM0pwZW1VaUxDSnBZWFFpT2pFMU5UTTROelk0TXpVdU56VXhNVEVzSW1Gd2NGOXBaQ0k2SWpKa05ERTNaVEl5TFRSbVpEUXRNVEZsT1MwNU9USTRMVEF5TkRKaFl6RXhNREF3TlNKOS5PUlkta1FDLTNBNExyczFVMDBHMF9vblpPUlRia2tjY1dWRkZfUGdiTkFvIiwidmlzaXRvcl9pZCI6IiIsImFwcF9pZCI6IjJkNDE3ZTIyLTRmZDQtMTFlOS05OTI4LTAyNDJhYzExMDAwNSIsImluc3RfaWQiOiI4MzllZGE3Yy01MjNmLTExZTktODA1OC0wMjQyYWMxMTAwMDgiLCJhcHBfdXNlcl9pZCI6IjgzOTk1YTUyLTUyM2YtMTFlOS04MDU4LTAyNDJhYzExMDAwOCIsImNoYXRfaWQiOiIiLCJleHAiOjE1NTM4Nzc0MzUsInJvb21faWQiOm51bGwsIl9vcmdfaWQiOjEsImRvbWFpbl9ob3N0IjpudWxsLCJfdXNlcl9pZCI6Mjg4NDJ9.ST7ab1dvKuiKcsRI677o5CgK_t3Qrb4PLQNoXxy5T2U'  # noqa
+        access_token_jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMDAwZjcxMTYtNDQ5OS0xMWU5LWJjYTQtMDI0MmFjMTEwMDA5Iiwic3ViIjoic2VydmljZS5naW9zZy5jb20iLCJwZXJtcyI6W10sIm9yZ19pZCI6ImExN2NlYTgwLWUzOTctMTFlMC1iNTFhLTAwMTYzZTBjMDFmMiIsImFwcF9pZCI6IjJkNDE3ZTIyLTRmZDQtMTFlOS05OTI4LTAyNDJhYzExMDAwNSIsImluc3RfaWQiOiI4MzllZGE3Yy01MjNmLTExZTktODA1OC0wMjQyYWMxMTAwMDgiLCJleHAiOjE1NTM4Nzc0MzV9.Rj83FyBEXS_sTQxHgq_WDjhUD3C80e-5lw1MgyczNuo'  # noqa
         data_content = jwt.decode(data_jwt, algorithms=["HS256"], options={"verify_signature": False})
         access_token_content = jwt.decode(access_token_jwt, algorithms=["HS256"], options={"verify_signature": False})
         # Create valid JWTs
@@ -35,7 +35,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgappTriggerContext(request, SIGN_KEY)
+            GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -49,7 +49,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgappTriggerContext(request, SIGN_KEY)
+            GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -63,7 +63,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgappTriggerContext(request, SIGN_KEY)
+            GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -77,7 +77,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'token': self.VALID_TOKEN_JWT
         })
         try:
-            trigger = GiosgappTriggerContext(request, SIGN_KEY)
+            GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -92,7 +92,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             # Missing 'redirect_uri' when type is 'install'
         })
         try:
-            trigger = GiosgappTriggerContext(request, SIGN_KEY)
+            GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
@@ -106,7 +106,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             # Missing param 'token'
         })
         try:
-            trigger = GiosgappTriggerContext(request, SIGN_KEY)
+            GiosgappTriggerContext(request, SIGN_KEY)
             # Should go to the exception instead
             self.fail()
         except ValueError as e:
