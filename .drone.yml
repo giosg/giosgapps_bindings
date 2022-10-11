@@ -1,0 +1,15 @@
+---
+kind: pipeline
+name: default
+
+trigger:
+  event:
+    - push
+
+steps:
+  - name: test-code
+    image: python:3.8
+
+    commands:
+      - pip install -r requirements.txt
+      - ./runtests.py
