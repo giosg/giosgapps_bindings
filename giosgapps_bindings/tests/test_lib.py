@@ -100,6 +100,7 @@ class GiosgTriggerAbstractionTest(TestCase):
 
     def test_missing_token_when_not_uninstall(self):
         factory = RequestFactory()
+        self.assertEqual(True, False)
         request = factory.get('/', data={
             'type': 'setup',
             'data': self.VALID_DATA_JWT
@@ -119,7 +120,7 @@ class GiosgTriggerAbstractionTest(TestCase):
             'data': self.VALID_DATA_JWT,
             'token': self.VALID_TOKEN_JWT
         })
-        trigger = GiosgappTriggerContext(request, SIGN_KEY)
+        trigger = GiosgappTriggerContext(request, SIGN_KEY)#Ugly comment
 
         # Check attrs exist
         self.assertTrue(hasattr(trigger, 'type'))
