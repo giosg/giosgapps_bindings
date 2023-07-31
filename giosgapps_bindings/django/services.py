@@ -10,7 +10,7 @@ class GiosgHttpApi:
     CHAT_HOST = os.environ.get('SERVICE_GIOSG_COM', 'https://service.giosg.com')
 
     def __init__(self, org_id, installation_model, api_key=None, token_type="Token"):
-        valid_token_types = ["Token", "Bearer"]
+        valid_token_types = ["Token", "Bearer", "GIOSGAPP"]
         if token_type not in valid_token_types:
             raise ValueError("Invalid token type '{}', valid values are {}".format(
                 token_type, valid_token_types
