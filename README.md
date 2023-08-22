@@ -4,6 +4,9 @@ Helper library for Django based application for handling Giosg App trigger reque
 
 ## Changelog
 
+### 1.2.0 (2023-08-22)
+Drop unused and old packages
+
 ### 1.1.0 (2022-12-07)
 Bump cffi from 1.12.3 --> 1.15.1 due to build problems with M1 Macs
 
