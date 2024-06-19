@@ -1,10 +1,11 @@
-from django.views import View
-from django.http import HttpResponseBadRequest
-from django.views.decorators.clickjacking import xframe_options_exempt
-from django.conf import settings
-from ..django.utils import GiosgappTriggerContext
-
 import logging
+
+from django.conf import settings
+from django.http import HttpResponseBadRequest
+from django.views import View
+from django.views.decorators.clickjacking import xframe_options_exempt
+
+from giosgapps_bindings.django.utils import GiosgappTriggerContext
 
 logger = logging.getLogger(__name__)
 
@@ -24,16 +25,15 @@ class ApplicationTriggerView(View):
             handler = getattr(self, 'on_' + trigger.type, self.__unsupported_trigger_type)
             if trigger.type == 'manual_dialog' or trigger.type == 'manual_nav':
                 handler = xframe_options_exempt(handler)
-            return handler(request, trigger)
 
         # Handle any giosg-auth-token validation errors
-        except ValueError as e:
-            logger.error(
-                f"ValueError creating TriggerContext: {e}\nRequest get: {request.GET}"
+        except ValueError as exc:
+            logger.exception(
+                f"ValueError creating TriggerContext: {exc}\nRequest get: {request.GET}"
             )
-            return HttpResponseBadRequest(e)
-        except Exception as exception:
-            logger.exception(f"Exception creating TriggerContext: {exception}")
+            return HttpResponseBadRequest(exc)
+
+        return handler(request, trigger)
 
     def __unsupported_trigger_type(self, *args, **kwargs):
         return HttpResponseBadRequest('Unsupported trigger type')
