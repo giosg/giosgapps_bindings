@@ -4,13 +4,13 @@ with open('requirements.txt') as f:
     setup(
         name='giosgapps_bindings',
         packages=setuptools.find_packages(),
-        version='1.2.0',
+        version='2.0.0',
         license='MIT',
         description='Module for Giosg Apps development',
         author='Giosg',
         author_email='developers@giosg.com',
         url='https://github.com/giosg/giosgapps_bindings',
-        download_url='https://github.com/giosg/giosgapps_bindings/archive/v1.2.0.tar.gz',
+        download_url='https://github.com/giosg/giosgapps_bindings/archive/v2.0.0.tar.gz',
         keywords=['AUTH', 'GIOSG'],
         install_requires=list(f.read().splitlines()),
         classifiers=[
@@ -18,8 +18,6 @@ with open('requirements.txt') as f:
             'Intended Audience :: Developers',
             'Topic :: Software Development :: Build Tools',
             'License :: OSI Approved :: MIT License',
-            'Programming Language :: Python :: 3.6',
-            'Programming Language :: Python :: 3.7',
-            'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.13.1',
         ],
     )
