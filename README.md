@@ -4,6 +4,9 @@ Helper library for Django based application for handling Giosg App trigger reque
 
 ## Changelog
 
+### 2.0.0 (2025-04-07)
+Update dependencies to newer versions. This is a breaking change, as the new version of `cffi` requires Python 3.7 or newer.
+
 ### 1.2.0 (2023-08-22)
 Drop unused and old packages
 
