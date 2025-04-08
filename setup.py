@@ -17,7 +17,6 @@ with open('requirements.txt') as f:
             'Development Status :: 5 - Production/Stable',  # "3 - Alpha" or "4 - Beta" or "5 - Production/Stable"
             'Intended Audience :: Developers',
             'Topic :: Software Development :: Build Tools',
-            'License :: OSI Approved :: MIT License',
-            'Programming Language :: Python :: 3.13.1',
+            'Programming Language :: Python :: 3.13',
         ],
     )
